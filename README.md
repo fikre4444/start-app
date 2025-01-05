@@ -2,6 +2,8 @@
 
 ### A Daily Reminder App
 
+### If you like this app, don't forget to star this repo.
+
 ##### This is a simple daily reminder app, that starts up when your computer is turned on. Its intended use is that when you turn on your pc it opens and reminds you of the things that you want to be reminded of. These can be things that you want to be reminded of daily or just for that specific day. Which means it allows you add reminders and edit and delete them. This is made in Springboot. And it was made for a postgres database.
 
 ### How to Run
