@@ -24,7 +24,7 @@
 
 ###### In order for the app to start at startup(when the pc turns on), you need to copy the startapp.bat file to the startup folder which you can get by opening the Run dialog box - (press windows key + R). After that starts type shell:startup and the startup folder will open. After that copy the startapp.bat file there. The startapp.bat file is found in the root folder of this app.
 
-###### After this you need to build the springboot app (create a jar file of it). to do this you go to the root folder of the springboot app and then open cmd from there and then run 'mvn package'. After this you can find the built file in the target folder of the built file the name is 'demo-0.0.1-SNAPSHOT.jar' and you need to rename it to 'greet.jar'. After this you need to copy the file to desktop. because that is where the bat file in the startup folder will find the springboot app.
+###### After this you need to build the springboot app (create a jar file of it). to do this you go to the root folder of the springboot app and then open cmd from there and then run 'mvn package'. After this you can find the built file in the target folder of the built file the name is 'demo-0.0.1-SNAPSHOT.jar' and you need to rename it to 'greet.jar'. After this you need to copy the file to desktop. because that is where the bat file in the startup folder will find the springboot app. And then you need to test it by opening the .bat file and if it finds the springboot app, it will open it and open a browser. hence you would be done.
 
 #### Second Note:
 
