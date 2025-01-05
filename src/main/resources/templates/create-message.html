@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .success-message, .error-message {
+            margin-top: 15px;
+            font-size: 1rem;
+            display: none;
+        }
+        .success-message {
+            color: #28a745;
+        }
+        .error-message {
+            color: #dc3545;
+        }
+        .nav-link {
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #be0f3b;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .nav-link:hover {
+        background-color: #94bae2;
+        transform: scale(1.05); /* Slightly enlarge on hover */
+    }
+
+    .nav-link:active {
+        background-color: #0e4177; /* Darker shade for active state */
+        transform: scale(0.98); /* Shrink slightly on click */
+    }
+    </style>
+    <script>
+        async function createMessage(event) {
+            event.preventDefault(); // Prevent form submission from refreshing the page
+            const message = document.getElementById('message-input').value;
+            const detailDescription = document.getElementById('description-input').value;
+
+            try {
+                const response = await fetch('/api/message/create-message', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message, detailDescription: detailDescription })
+                });
+
+                if (response.ok) {
+                    document.getElementById('success-message').style.display = 'block';
+                    document.getElementById('error-message').style.display = 'none';
+                } else {
+                    throw new Error('Failed to create message');
+                }
+            } catch (error) {
+                console.error(error);
+                document.getElementById('success-message').style.display = 'none';
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a New Message</h1>
+        <form onsubmit="createMessage(event)">
+            <input type="text" id="message-input" placeholder="Enter message" required>
+            <textarea id="description-input" placeholder="Enter detail description" rows="4" required></textarea>
+            <button type="submit">Create Message</button>
+        </form>
+        <p class="success-message" id="success-message">Message created successfully!</p>
+        <p class="error-message" id="error-message">Error creating the message. Please try again.</p>
+        <a href="/" class="nav-link button">Back to Home</a>
+    </div>
+</body>
+</html>
